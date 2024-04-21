@@ -20,8 +20,7 @@ export async function POST(request: NextRequest) {
   const formData = await request.formData();
 
   // Get the file from the form data
-  const file = formData.get('file') as File;
-  const fileToStorage = file;
+  const fileToStorage = formData.get('file') as File;
 
   if (!fileToStorage) {
     return NextResponse.json({ error: 'Aucun fichier trouvé.' }, { status: 400 });

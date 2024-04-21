@@ -10,5 +10,3 @@ jobs:
         node-version: 18.17.0
     - run: npm install
     - run: npm run build
-      env:
-        DOTENV_KEY: ${{ secrets.DOTENV_KEY }}
