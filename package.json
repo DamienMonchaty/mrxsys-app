@@ -1,6 +1,7 @@
 {
-  "name": "mrxsys-app",
-  "version": "0.1.0",
+  "name": "mrx-test",
+  "description": "technical test",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
