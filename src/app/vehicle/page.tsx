@@ -1,17 +1,24 @@
 'use client'
 
 import Link from 'next/link';
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { redirect } from 'next/navigation';
 import useSWR from 'swr';
 import Table from '@/components/table.component';
+import Pagination from '@/components/pagination.component';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Vehicle = () => {
 
-    const { data: vehicles, error } = useSWR<any>(`/api/vehicle/all`, fetcher);
-    console.log(vehicles);
+    const [page, setPage] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
+
+    const { data: vehicles, error } = useSWR<any>(`/api/vehicle/all?page=${page}&pageSize=${pageSize}`, fetcher);
+
+    const handlePageChange = (newPage: any) => {
+        setPage(newPage);
+    };
 
     if (error) return (
         <div className="flex justify-center items-center h-screen">
@@ -26,7 +33,12 @@ const Vehicle = () => {
 
     return (
         <>
-          <Table title="Vehicle Table" data={vehicles.content} />
+            <Table title="Vehicle Table" data={vehicles.content} />
+            <Pagination
+                currentPage={page}
+                totalPages={Math.ceil(vehicles.totalCount / pageSize)}
+                onPageChange={handlePageChange}
+            />
         </>
     );
 

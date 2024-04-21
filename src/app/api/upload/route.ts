@@ -6,7 +6,6 @@ const b2 = new B2({
   applicationKeyId: '00588270881b62a0000000001',
   applicationKey: 'K005b3zpn2tUWr3usRczbuOwG5vCHrg'
 });
-const bucketName = 'Mrx-DamBucket';
 
 // Middleware de gestion du téléchargement de fichiers avec multer
 export const config = {

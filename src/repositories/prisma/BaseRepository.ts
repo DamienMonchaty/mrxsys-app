@@ -6,4 +6,8 @@ export default abstract class BaseRepository<T> {
     getAll(options: Record<string, any> = {}): Promise<Array<T>> {
         return this.prisma.findMany(options);
     }
+
+    count(): Promise<number> {
+        return this.prisma.count(); 
+    }
 }
