@@ -1,37 +1,84 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# mrx-test - Technical test
 
-## Getting Started
+L'objectif de ce test est de mettre en place un backend et un frontend déployés sur un serveur distant 
 
-First, run the development server:
+<br />
+
+> Comment utiliser le code
+
+**Étape #1** - Cloner le code source
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+$ git clone https://github.com/DamienMonchaty/mrxsys-app.git
+$ cd mrxsys-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<br />
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Étape #2** - Installer les modules avec NPM ou Yarn
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+$ npm install
+// OR
+$ yarn
+```
 
-## Learn More
+<br />
 
-To learn more about Next.js, take a look at the following resources:
+**Étape #3** - Démarrer le projet (mode développement)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+$ npm run dev
+// OR
+$ yarn dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+<br />
 
-## Deploy on Vercel
+## Docker Deployment Script
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Ce script facilite le déploiement d'images Docker sur un serveur distant en utilisant SSH.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# mrxsys-app
+### Prérequis
+
+- Docker installé localement.
+- Le package `sshpass` installé (`sudo apt install sshpass`).
+
+### Utilisation
+
+1. Configurez les variables dans le script en fonction de votre environnement :
+
+    - `ARCHIVE` : Nom du fichier d'archive pour exporter/importer les images Docker.
+    - `IMAGE` : Image Docker à exporter/importer.
+    - `SSH_HOST` : Nom d'hôte ou adresse IP du serveur distant.
+    - `SSH_LOGIN` : Nom d'utilisateur SSH.
+    - `SSH_PASSWORD` : Mot de passe SSH.
+    - `SSH_PORT` : Numéro de port SSH.
+    - `SSH_DIRECTORY_TARGET` : Répertoire cible sur le serveur distant.
+
+2. Exécutez le script avec l'argument approprié :
+
+    - `export` : Exportez l'image Docker et déployez-la sur le serveur distant.
+    - `import` : Importez l'image Docker sur le serveur distant.
+    - `start` : Démarrez les conteneurs Docker sur le serveur distant.
+
+### Exemples de commandes
+
+1. Exportez l'image Docker et déployez-la sur le serveur distant :
+
+    ```bash
+    ./deploy.sh export
+    ```
+
+2. Importez l'image Docker sur le serveur distant :
+
+    ```bash
+    ./deploy.sh import
+    ```
+
+3. Démarrez les conteneurs Docker sur le serveur distant :
+
+    ```bash
+    ./deploy.sh start
+    ```
+

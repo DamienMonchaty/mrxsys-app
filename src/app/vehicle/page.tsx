@@ -1,17 +1,43 @@
 'use client'
 
 import Link from 'next/link';
-import React, { useEffect, useLayoutEffect } from 'react';
-import { redirect } from 'next/navigation';
-import useSWR from 'swr';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
+import { redirect, useRouter } from 'next/navigation';
+import useSWR, { mutate } from 'swr';
 import Table from '@/components/table.component';
+import Pagination from '@/components/pagination.component';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Vehicle = () => {
 
-    const { data: vehicles, error } = useSWR<any>(`/api/vehicle/all`, fetcher);
-    console.log(vehicles);
+    const [page, setPage] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
+    const route = useRouter();
+
+    const { data: vehicles, error } = useSWR<any>(`/api/vehicle/all?page=${page}&pageSize=${pageSize}`, fetcher);
+
+    const handlePageChange = (newPage: any) => {
+        setPage(newPage);
+    };
+
+    const handleDelete = (id: string) => {
+        fetch(`/api/vehicle/delete/` + id, {
+            method: 'DELETE',
+        })
+            .then((response) => response.json())
+            .then(() => {
+                mutate(`/api/vehicle/all?page=${page}&pageSize=${pageSize}`);
+            })
+    }
+
+    const handleAdd= () => {
+        route.push('/vehicle/insert');
+    }
+
+    const handleEdit = (id: string) => {
+        route.push('/vehicle/edit/' + id);
+    }
 
     if (error) return (
         <div className="flex justify-center items-center h-screen">
@@ -26,7 +52,12 @@ const Vehicle = () => {
 
     return (
         <>
-          <Table title="Vehicle Table" data={vehicles.content} />
+            <Table title="Vehicle Table" data={vehicles.content} onDelete={handleDelete} onAdd={handleAdd} onEdit={handleEdit}/>
+            <Pagination
+                currentPage={page}
+                totalPages={Math.ceil(vehicles.totalCount / pageSize)}
+                onPageChange={handlePageChange}
+            />
         </>
     );
 
