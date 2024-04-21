@@ -1,0 +1,16 @@
+version: "3.0"
+
+services:
+  web:
+    image:  dammonchaty/app-web:1.0
+    #build:
+    #  context: .
+    environment:
+      DATABASE_URL: file:./prisma/database.db
+    ports:
+      - 9080:3000
+    #volumes:
+      #- /app/prisma
+      #- ./prisma/database.db:/app/database.db:rw # Mount the database file with correct ownership
+      #- .:/app
+      #- /app/node_modules
