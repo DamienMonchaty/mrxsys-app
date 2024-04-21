@@ -1,6 +1,7 @@
 import Table from "@/components/table.component";
 import Image from "next/image";
 import Vehicle from "./vehicle/page";
+import Upload from "./upload/page";
 
 export default function Home() {
 
@@ -21,6 +22,9 @@ export default function Home() {
   return (
     <main className="p-12">
       <div className="grid grid-cols-2 gap-8">
+        <div className="col-span-full">
+          <Upload />
+        </div>
         <div>
           <Table title="Employee Table" data={dataTab1} />
         </div>
