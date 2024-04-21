@@ -44,7 +44,6 @@ then
     sshpass -p $SSH_PASSWORD scp -P $SSH_PORT docker-compose.yml $SSH_LOGIN@$SSH_HOST:$SSH_DIRECTORY_TARGET
 
     sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_LOGIN@$SSH_HOST "docker compose up -d"
-
 else
     echo "no argument found"
 fi
