@@ -20,13 +20,14 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
         }
 
         const body = await request.json();
-        const { bicycle, color, fuel, manufacturer, type, vehicle, vin, vrm } = body;
+        const { bicycle, color, fuel, manufacturer, model, type, vehicle, vin, vrm } = body;
 
         vehicleToEdit = {
             bicycle: bicycle,
             color: color,
             fuel: fuel,
             manufacturer: manufacturer,
+            model: model,
             type: type,
             vehicle: vehicle,
             vin: vin,

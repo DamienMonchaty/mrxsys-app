@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
 
     try {  
         const body = await request.json();
-        const { bicycle, color, fuel, manufacturer, type, vehicle, vin, vrm } = body;
+        const { bicycle, color, fuel, manufacturer, model, type, vehicle, vin, vrm } = body;
 
         const vehicleRepository = new VehicleRepository();
 
@@ -16,6 +16,7 @@ export async function POST(request: NextRequest) {
             color: color,
             fuel: fuel,
             manufacturer: manufacturer,
+            model: model,
             type: type,
             vehicle: vehicle,
             vin: vin,
