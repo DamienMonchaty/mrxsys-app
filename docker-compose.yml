@@ -2,7 +2,7 @@ version: "3.0"
 
 services:
   web:
-    image:  dammonchaty/app-web:1.0
+    image:  dammonchaty/app-web:2.0
     #build:
     #  context: .
     environment:

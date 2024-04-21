@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ARCHIVE=mrxsys.tar.gz
-IMAGE=dammonchaty/app-web:1.0
+IMAGE=dammonchaty/app-web:2.0
 
 SSH_HOST=recrutement.mrxsys.com
 SSH_LOGIN=mrxsys
