@@ -12,13 +12,13 @@ SSH_DIRECTORY_TARGET=/home/mrxsys
 
 if [[ $1 = "export" ]]
 then
-    echo "Suppression de l'archive ..."
+    echo "Delete Archive ..."
     rm -f $ARCHIVE 2> /dev/null
 
-    echo "Exporter l'image $IMAGE dans l'archive $ARCHIVE ..."
+    echo "Export $IMAGE in $ARCHIVE ..."
     docker save $IMAGE | gzip > $ARCHIVE 
 
-    echo "Envoie de l'archive $ARCHIVE ..."
+    echo "Send $ARCHIVE ..."
     sshpass -p $SSH_PASSWORD scp -P $SSH_PORT $ARCHIVE $SSH_LOGIN@$SSH_HOST:$SSH_DIRECTORY_TARGET
 
 elif [[ $1 = "import" ]]
@@ -40,7 +40,7 @@ then
 
 elif [[ $1 = "start" ]]
 then
-    echo "Envoie du fichier docker-compose.yml ..."
+    echo "Send docker-compose.yml ..."
     sshpass -p $SSH_PASSWORD scp -P $SSH_PORT docker-compose.yml $SSH_LOGIN@$SSH_HOST:$SSH_DIRECTORY_TARGET
 
     sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_LOGIN@$SSH_HOST "docker compose up -d"
