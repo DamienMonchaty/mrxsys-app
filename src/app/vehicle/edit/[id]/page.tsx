@@ -66,7 +66,7 @@ const EditPage = ({ params }: { params: { id: number } }) => {
                 vrm: vehicle.vrm
             });
         }
-    }, [vehicle, reset]);
+    }, [params.id, vehicle, reset]);
 
     const editData = (formValues: FormValues) => {
 
