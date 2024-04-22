@@ -7,13 +7,6 @@ const b2 = new B2({
   applicationKey: 'K005b3zpn2tUWr3usRczbuOwG5vCHrg'
 });
 
-// Middleware de gestion du téléchargement de fichiers avec multer
-export const config = {
-  api: {
-    bodyParser: false // Désactive le bodyParser intégré de Next.js pour utiliser multer
-  }
-};
-
 // Fonction de gestion de l'envoi de fichiers
 export async function POST(request: NextRequest) {
   // Parse the incoming form data
